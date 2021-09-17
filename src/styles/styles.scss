@@ -1,0 +1,11 @@
+@import './base/settings';
+@import './base/base';
+@import './components/checkthis';
+
+.d-flex{
+    display: flex;
+}
+.flex-column{
+    flex-direction: column;
+    justify-content: center;
+}
