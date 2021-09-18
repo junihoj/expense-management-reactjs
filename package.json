@@ -4,6 +4,9 @@
   "main": "index.js",
   "author": "Eze Onyekachukwu",
   "license": "MIT",
+  "engines": {
+    "node": "12.18.3"
+  },
   "scripts": {
     "serve": "live-server public/",
     "build": "webpack",
