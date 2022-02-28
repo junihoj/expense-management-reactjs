@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const publicPath = path.join(__dirname, '..', 'public');
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 app.use(express.static(publicPath));
 
 
@@ -11,5 +11,9 @@ app.get('*', (req, res)=>{
 });
 
 app.listen(port, ()=>{
-    console.log('serve is running on port 3000');
+    console.log(`serve is running on port ${port}`);
 });
+
+/* 
+    git.heroku.come/appname.git
+*/

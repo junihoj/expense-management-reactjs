@@ -1,8 +1,10 @@
-node_modules/
-src/playground/
+.env.development
+.env.test
 src/routers/PortfolioRouter.js
 _checkthis.scss
 public/bundle.js
 public/bundle.js.map
 public/styles.css
 public/styles.css.map
+node_modules/
+src/playground/

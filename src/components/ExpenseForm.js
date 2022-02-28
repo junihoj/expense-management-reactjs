@@ -4,6 +4,7 @@ import { SingleDatePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 
 const now = moment();
+//TODO: CREATEDAT AND AMOUNT FORMAT WITH NUMERAL JS
 
 console.log(now.format('MMM Do, YYYY'));
 export default class ExpenseForm extends React.Component{
@@ -47,6 +48,7 @@ export default class ExpenseForm extends React.Component{
     };
 
     onDateChange = (createdAt) =>{
+        console.log('CREATED AT', createdAt)
         if(createdAt){
             this.setState(()=>({
                 createdAt
