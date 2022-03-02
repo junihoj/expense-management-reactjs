@@ -10,13 +10,14 @@ import {addExpense} from './actions/expenses';
 import {setTextFilter} from './actions/filters';
 import getVisibleExpenses from  './selectors/expenses';
 import AppRouter from './routers/AppRouter';
+import {startSetExpenses} from './actions/expenses';
 
 const store = configureStore();
 
 
-store.dispatch(addExpense({description: 'water bill', amount:4500}));
-store.dispatch(addExpense({description: 'Gas bill', createdAt:1000}));
-store.dispatch(addExpense({description: 'Rent', amount:1000, }));
+// store.dispatch(addExpense({description: 'water bill', amount:4500}));
+// store.dispatch(addExpense({description: 'Gas bill', createdAt:1000}));
+// store.dispatch(addExpense({description: 'Rent', amount:1000, }));
 
 console.log("this is suppose to be running");
 
@@ -34,4 +35,11 @@ const jsx = (
     </Provider>
 );
 
-ReactDOM.render(jsx, document.getElementById('app'));
+
+
+ReactDOM.render(<h1>loading...</h1>, document.getElementById('app'));
+store.dispatch(startSetExpenses()).then(()=>{
+    ReactDOM.render(jsx, document.getElementById('app'));
+});
+
+// ReactDOM.render(jsx, document.getElementById('app'));
