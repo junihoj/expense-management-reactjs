@@ -2,17 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {createStore} from 'redux';
 import { Provider } from 'react-redux';
-
 import configureStore from './store/configureStore';
 import  'normalize.css/normalize.css';
 import './styles/styles.scss';
-import {addExpense} from './actions/expenses';
-import {setTextFilter} from './actions/filters';
-import getVisibleExpenses from  './selectors/expenses';
 import AppRouter,{history} from './routers/AppRouter';
 import {startSetExpenses} from './actions/expenses';
 import { firebase } from './firebase/firebase';
-import { login,logout } from './actions/auth';
+import { login,logout} from './actions/auth';
 
 const store = configureStore();
 
@@ -64,6 +60,7 @@ firebase.auth().onAuthStateChanged((user)=>{
 firebase.auth().onAuthStateChanged((user)=>{
     if(user){
         store.dispatch(startSetExpenses()).then(()=>{
+            store.dispatch(login(user.uid));
             renderApp();
             if(history.location.pathname =='/'){
                 history.push('/dashboard');
@@ -71,6 +68,7 @@ firebase.auth().onAuthStateChanged((user)=>{
         });
     }
     else{
+        store.dispatch(login())
         renderApp();
         history.push('/');
     }
