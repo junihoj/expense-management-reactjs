@@ -9,8 +9,10 @@ import './styles/styles.scss';
 import {addExpense} from './actions/expenses';
 import {setTextFilter} from './actions/filters';
 import getVisibleExpenses from  './selectors/expenses';
-import AppRouter from './routers/AppRouter';
+import AppRouter,{history} from './routers/AppRouter';
 import {startSetExpenses} from './actions/expenses';
+import { firebase } from './firebase/firebase';
+import { login,logout } from './actions/auth';
 
 const store = configureStore();
 
@@ -35,11 +37,42 @@ const jsx = (
     </Provider>
 );
 
+const hasRendered = false;
+
+const renderApp = ()=>{
+    if(!hasRendered){
+        ReactDOM.render(jsx, document.getElementById('app')); 
+    }
+}
+
 
 
 ReactDOM.render(<h1>loading...</h1>, document.getElementById('app'));
-store.dispatch(startSetExpenses()).then(()=>{
+/* store.dispatch(startSetExpenses()).then(()=>{
     ReactDOM.render(jsx, document.getElementById('app'));
 });
+firebase.auth().onAuthStateChanged((user)=>{
+    if(user){
+        console.log('you are logged in ');
 
+    }else{
+        console.log("You're logged out");
+    }
+})
+ */
+
+firebase.auth().onAuthStateChanged((user)=>{
+    if(user){
+        store.dispatch(startSetExpenses()).then(()=>{
+            renderApp();
+            if(history.location.pathname =='/'){
+                history.push('/dashboard');
+            }
+        });
+    }
+    else{
+        renderApp();
+        history.push('/');
+    }
+});
 // ReactDOM.render(jsx, document.getElementById('app'));
