@@ -1,17 +1,22 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink,Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { startLogout } from '../actions/auth';
 
 // NavLink also have exact propertyS
 export const Header = ({startLogout})=>(
-    <header>
-        <h1> Expensify</h1>
-        <NavLink className='link' to="/dashboard" activeClassName='is-active' exact={true}> DashboardPage</NavLink>
-        <NavLink className="link" to="/create" activeClassName="is-active"> Create Expense</NavLink>
-        <NavLink className="link" to="/edit" activeClassName="is-active"> Edit Expense</NavLink>
-        <NavLink className="link" to="/help" activeClassName="is-active"> Get Help</NavLink>
-        <button onClick={startLogout}>Logout</button>
+    <header className="header">
+        <div className="content-container">
+            <div className="header__content">
+                <Link
+                    to="/dashboard"
+                    className="header__title"
+                >
+                    <h1> Expensify</h1>
+                </Link>
+                <button className="button button--link" onClick={startLogout}>Logout</button>
+            </div>
+        </div>
     </header>
 );
 

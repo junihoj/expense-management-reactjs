@@ -1,10 +1,16 @@
 @import './base/settings';
 @import './base/base';
+@import './components/box-layout';
+@import './components/button';
+@import './components/content-container';
+@import './components/header';
+@import './components/page-header';
+@import './components/input-group';
 
-.d-flex{
-    display: flex;
-}
-.flex-column{
-    flex-direction: column;
-    justify-content: center;
-}
+// .d-flex{
+//     display: flex;
+// }
+// .flex-column{
+//     flex-direction: column;
+//     justify-content: center;
+// }
